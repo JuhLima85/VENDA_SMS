@@ -1,5 +1,7 @@
 package com.JuhAmil.Lista.de.Vendas.services;
 
+import java.util.Locale;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -24,19 +26,20 @@ public class SmsService {
 
 	@Value("${twilio.phone.to}")
 	private String twilioPhoneTo;
-	
+
 	@Autowired
 	private VendaRepository vendaRepository;
 
 	public void enviarSms(Long vendaId) {
-		
-	Venda venda = vendaRepository.findById(vendaId).get();
-	
-	String data = venda.getData().getMonthValue() + "/" + venda.getData().getYear();
-	
-	
-	String msg = "O vendedor(a) " + venda.getVendedor() + " foi destaque em " + data
-			+ " com o total de R$ " + venda.getTotal();
+
+		Locale.setDefault(new Locale("en", "US"));
+
+		Venda venda = vendaRepository.findById(vendaId).get();
+
+		String data = venda.getData().getMonthValue() + "/" + venda.getData().getYear();
+
+		String msg = "O vendedor(a) " + venda.getVendedor() + " foi destaque em " + data + " com o total de R$ "
+				+ venda.getTotal();
 
 		Twilio.init(twilioSid, twilioKey);
 
@@ -47,19 +50,5 @@ public class SmsService {
 
 		System.out.println(message.getSid());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

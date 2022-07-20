@@ -16,41 +16,22 @@ import com.JuhAmil.Lista.de.Vendas.services.VendaService;
 @RestController
 @RequestMapping(value = "/vendas")
 public class VendaController {
-	
+
 	@Autowired
 	private VendaService service;
-	
+
 	@Autowired
 	private SmsService smsService;
-	
+
 	@GetMapping
-	public Page<Venda> buscarVendas(
-			@RequestParam(value = "minDate", defaultValue = "") String minDate, 
-			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, 
-			Pageable pageable ){
-		return service.buscarVendas(minDate, maxDate, pageable );
+	public Page<Venda> buscarVendas(@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, Pageable pageable) {
+		return service.buscarVendas(minDate, maxDate, pageable);
 	}
-	
+
 	@GetMapping("/{id}/notificacao")
 	public void notificar(@PathVariable Long id) {
 		smsService.enviarSms(id);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
