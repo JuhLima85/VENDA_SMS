@@ -33,7 +33,7 @@ INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Daniel',32,12,
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Daniel',64,33,8193.0,'2022-03-13');
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Jessica',39,39,10557.0,'2022-03-05');
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Jessica',158,84,21601.0,'2022-03-02');
-INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Daniel',12,6,7625.0,'2022-02-29');
+INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Daniel',12,6,7625.0,'2022-02-28');
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Andressa',82,82,22465.0,'2022-02-27');
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Jessica',68,56,12595.0,'2022-02-17');
 INSERT INTO tb_vendas(vendedor,visitas,venda,total,data) VALUES ('Daniel',27,13,4636.0,'2022-02-16');
