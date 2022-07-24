@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Sale } from "../../models/sale";
 import { BASE_URL } from "../../utils/request";
-import NotificationButtom from '../NotificationButton';
+import NotificationButton from "../NotificationButton";
 import './styles.css';
 
 function SalesCard() {
@@ -13,15 +13,13 @@ function SalesCard() {
 
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
-   
+
     const [sales, setSales] = useState<Sale[]>([]);
 
     useEffect(() => {
 
         const dmin = minDate.toISOString().slice(0, 10);
         const dmax = maxDate.toISOString().slice(0, 10);
-    
-        console.log(dmax);
 
         axios.get(`${BASE_URL}/vendas?minDate=${dmin}&maxDate=${dmax}`)
             .then(response => {
@@ -77,16 +75,13 @@ function SalesCard() {
                                     <td>{sale.total.toFixed(2)}</td>
                                     <td>
                                         <div className="listavendas-red-btn">
-                                            <NotificationButtom />
+                                            <NotificationButton saleId={sale.id} />
                                         </div>
                                     </td>
                                 </tr>
 
                             )
                         })}
-
-
-
                     </tbody>
                 </table>
             </div>
