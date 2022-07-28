@@ -59,7 +59,7 @@ function SalesCard() {
                             <th>Vendedor</th>
                             <th className="shows992">Visitas</th>
                             <th className="shows992">Vendas</th>
-                            <th>total</th>
+                            <th>Total</th>
                             <th>Notificar</th>
                         </tr>
                     </thead>
