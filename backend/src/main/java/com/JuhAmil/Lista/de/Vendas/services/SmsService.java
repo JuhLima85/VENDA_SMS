@@ -29,7 +29,7 @@ public class SmsService {
 
 	@Autowired
 	private VendaRepository vendaRepository;
-
+		
 	public void enviarSms(Long vendaId) {
 
 		Locale.setDefault(new Locale("en", "US"));

@@ -14,7 +14,7 @@ import com.JuhAmil.Lista.de.Vendas.services.SmsService;
 import com.JuhAmil.Lista.de.Vendas.services.VendaService;
 
 @RestController
-@RequestMapping(value = "/vendas")
+@RequestMapping(value="/vendas")
 public class VendaController {
 
 	@Autowired
@@ -24,11 +24,13 @@ public class VendaController {
 	private SmsService smsService;
 
 	@GetMapping
-	public Page<Venda> buscarVendas(@RequestParam(value = "minDate", defaultValue = "") String minDate,
-			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, Pageable pageable) {
+	public Page<Venda> buscarVendas(
+			@RequestParam(value = "minDate", defaultValue = "") String minDate,
+			@RequestParam(value = "maxDate", defaultValue = "") String maxDate,
+			Pageable pageable) {
 		return service.buscarVendas(minDate, maxDate, pageable);
 	}
-
+	
 	@GetMapping("/{id}/notificacao")
 	public void notificar(@PathVariable Long id) {
 		smsService.enviarSms(id);

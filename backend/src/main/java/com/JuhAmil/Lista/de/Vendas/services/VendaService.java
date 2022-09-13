@@ -1,5 +1,6 @@
 package com.JuhAmil.Lista.de.Vendas.services;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -13,7 +14,9 @@ import com.JuhAmil.Lista.de.Vendas.entidades.Venda;
 import com.JuhAmil.Lista.de.Vendas.repositories.VendaRepository;
 
 @Service
-public class VendaService {
+public class VendaService implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
 	
 	@Autowired
 	private VendaRepository repository;
