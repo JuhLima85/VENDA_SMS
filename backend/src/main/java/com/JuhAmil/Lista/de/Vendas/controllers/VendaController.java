@@ -14,7 +14,7 @@ import com.JuhAmil.Lista.de.Vendas.services.SmsService;
 import com.JuhAmil.Lista.de.Vendas.services.VendaService;
 
 @RestController
-@RequestMapping(value="/vendas")
+@RequestMapping(value="/vendas/v1")
 public class VendaController {
 
 	@Autowired
