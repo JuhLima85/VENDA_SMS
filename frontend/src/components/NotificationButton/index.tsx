@@ -9,7 +9,7 @@ type Props = {
 }
 
 function handleClick(id : number){ 
-    axios(`${BASE_URL}/vendas/${id}/notificacao`)
+    axios(`${BASE_URL}/vendas/v1/${id}/notificacao`)
     .then(response => {
         toast.info("Mensagem enviada com sucesso!");
     });
