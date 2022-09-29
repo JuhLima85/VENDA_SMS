@@ -14,6 +14,8 @@ A aplicação possui uma tabela onde o usuário pode analisar as vendas diárias
 - Java
 - Spring Boot
 - Maven
+- Flyway
+- PostgreSQL
 ## Front end
 - HTML
 - CSS
@@ -23,7 +25,7 @@ A aplicação possui uma tabela onde o usuário pode analisar as vendas diárias
 ## Implantação em produção
 - Back end: Heroku
 - Front end: Netlify
-- Banco de dados: H2
+- Banco de dados: PostgreSQL
 
 ## Objetivo do projeto
 ![tela 4](https://user-images.githubusercontent.com/89745459/181821696-4d03a865-d79f-4397-a51d-fe45f830bf7d.png)
