@@ -20,25 +20,24 @@ public class Venda implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String vendedor;
-	private Integer visitas;
-	private double venda;
-	private Integer total;
+	private Integer qtdVenda;
+	private double precoUnitario;
+	private double total;
 	private LocalDate data;
 
 	public Venda() {
 
-	}
-		
-	public Venda(long id, String vendedor, Integer visitas, double venda, Integer total, LocalDate data) {
+	}	
+	
+	public Venda(long id, String vendedor, Integer qtdVenda, double precoUnitario, double total, LocalDate data) {
 		super();
 		this.id = id;
 		this.vendedor = vendedor;
-		this.visitas = visitas;
-		this.venda = venda;
+		this.qtdVenda = qtdVenda;
+		this.precoUnitario = precoUnitario;
 		this.total = total;
 		this.data = data;
 	}
-
 
 	public long getId() {
 		return id;
@@ -56,27 +55,27 @@ public class Venda implements Serializable{
 		this.vendedor = vendedor;
 	}
 
-	public Integer getVisitas() {
-		return visitas;
+	public Integer getQtdVenda() {
+		return qtdVenda;
 	}
 
-	public void setVisitas(Integer visitas) {
-		this.visitas = visitas;
+	public void setQtdVenda(Integer qtdVenda) {
+		this.qtdVenda = qtdVenda;
 	}
 
-	public double getVenda() {
-		return venda;
+	public double getPrecoUnitario() {
+		return precoUnitario;
 	}
 
-	public void setVenda(double venda) {
-		this.venda = venda;
+	public void setPrecoUnitario(double precoUnitario) {
+		this.precoUnitario = precoUnitario;
 	}
 
-	public Integer getTotal() {
+	public double getTotal() {
 		return total;
 	}
 
-	public void setTotal(Integer total) {
+	public void setTotal(double total) {
 		this.total = total;
 	}
 
@@ -86,6 +85,10 @@ public class Venda implements Serializable{
 
 	public void setData(LocalDate data) {
 		this.data = data;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override
@@ -107,16 +110,8 @@ public class Venda implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Venda [id=" + id + ", vendedor=" + vendedor + ", visitas=" + visitas + ", venda=" + venda + ", total="
-				+ total + ", data=" + data + "]";
+		return "Venda [id=" + id + ", vendedor=" + vendedor + ", qtdVenda=" + qtdVenda + ", precoUnitario="
+				+ precoUnitario + ", total=" + total + ", data=" + data + "]";
 	}
-	
-	
-	
-	
-
-	
-	
-	
 
 }

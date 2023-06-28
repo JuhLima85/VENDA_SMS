@@ -2,12 +2,11 @@ package com.JuhAmil.Lista.de.Vendas.services;
 
 import java.util.Locale;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.JuhAmil.Lista.de.Vendas.entidades.Venda;
-import com.JuhAmil.Lista.de.Vendas.repositories.VendaRepository;
+import com.JuhAmil.Lista.de.Vendas.exception.SmsException;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -27,30 +26,33 @@ public class SmsService {
 	@Value("${twilio.phone.to}")
 	private String twilioPhoneTo;
 
-	@Autowired
-	private VendaRepository vendaRepository;
-		
-	public void enviarSms(Long vendaId) {
+	public String enviarSms(Venda venda) {
+		try {
+			Locale.setDefault(new Locale("en", "US"));
 
-		Locale.setDefault(new Locale("en", "US"));
+			String data = venda.getData().getMonthValue() + "/" + venda.getData().getYear();
+			String msg = null;				
 
-		Venda venda = vendaRepository.findById(vendaId).get();
+			if(venda.getTotal() <= 200) {
+				msg = venda.getVendedor() + ", em " + data + " você vendeu um total de R$ "
+						+ venda.getTotal() + ". Infelizmente você não alcançou a meta esperada, não desanime, pois ainda há tempo para aprimorar seus resultados.";
+			}else if(venda.getTotal() <= 1000) {
+				msg = venda.getVendedor() + ", em " + data + " você vendeu um total de R$ "
+						+ venda.getTotal() + ". Parabéns, você alcançou a meta esperada!";
+			}else {
+				msg = venda.getVendedor() + ", em " + data + " você vendeu um total de R$ "
+						+ venda.getTotal() + ". Parabéns pelo seu desempelho! Você superou a meta esperada.";
+			}			
 
-		String data = venda.getData().getMonthValue() + "/" + venda.getData().getYear();
+			Twilio.init(twilioSid, twilioKey);			
+			PhoneNumber to = new PhoneNumber(twilioPhoneTo);
+			PhoneNumber from = new PhoneNumber(twilioPhoneFrom);
+			Message.creator(to, from, msg).create();
+			
+			return msg;			
+		} catch (Exception e) {
+			throw new SmsException("Erro ao enviar a mensagem SMS: " + e.getMessage());
+		}
 
-		String msg = "O vendedor(a) " + venda.getVendedor() + " foi destaque em " + data + " com o total de R$ "
-				+ venda.getTotal();
-
-		Twilio.init(twilioSid, twilioKey);
-
-		PhoneNumber to = new PhoneNumber(twilioPhoneTo);
-		PhoneNumber from = new PhoneNumber(twilioPhoneFrom);
-
-		Message message = Message.creator(to, from, msg).create();
-
-		System.out.println(message.getSid());
-		
-		
 	}
-
 }
