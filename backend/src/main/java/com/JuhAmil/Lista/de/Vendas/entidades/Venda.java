@@ -11,9 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="tb_vendas")
-public class Venda implements Serializable{
-	
+@Table(name = "tb_vendas")
+public class Venda implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -27,8 +27,8 @@ public class Venda implements Serializable{
 
 	public Venda() {
 
-	}	
-	
+	}
+
 	public Venda(long id, String vendedor, Integer qtdVenda, double precoUnitario, double total, LocalDate data) {
 		super();
 		this.id = id;
@@ -37,6 +37,16 @@ public class Venda implements Serializable{
 		this.precoUnitario = precoUnitario;
 		this.total = total;
 		this.data = data;
+	}
+
+	public Venda(String vendedor, Integer qtdVenda, double precoUnitario, String data) {
+		super();
+		this.id = id;
+		this.vendedor = vendedor;
+		this.qtdVenda = qtdVenda;
+		this.precoUnitario = precoUnitario;
+		this.total = total;
+		this.data = LocalDate.parse(data);
 	}
 
 	public long getId() {

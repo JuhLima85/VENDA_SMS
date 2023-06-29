@@ -53,30 +53,6 @@ public class VendaService implements Serializable {
 	    }
 	}
 
-
-//	public Venda salvar(Venda venda) {
-//		try {
-//			var resultado = venda.getQtdVenda() * venda.getPrecoUnitario();
-//			venda.setTotal(resultado);
-//			Venda vendaSalva = repository.save(venda);
-//			String msg = null;
-//			
-//			if (vendaSalva != null) {
-//				msg = smsService.enviarSms(venda);
-//			}else {
-//				throw new VendaException("Erro ao salvar a venda");
-//			}
-//
-//			return vendaSalva;
-//
-//		}catch(VendaException e) {
-//			throw e;
-//		} 		
-//		catch (Exception e) {
-//			throw new RuntimeException("Erro ao salvar a venda: " + e.getMessage());
-//		}
-//	}
-
 	public Page<Venda> buscarVendas(String minDate, String maxDate, Pageable pageable) {
 
 		LocalDate hoje = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());

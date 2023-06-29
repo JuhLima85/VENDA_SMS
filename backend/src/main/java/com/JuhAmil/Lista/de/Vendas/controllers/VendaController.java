@@ -1,5 +1,7 @@
 package com.JuhAmil.Lista.de.Vendas.controllers;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +33,34 @@ public class VendaController {
 
 	@Autowired
 	private VendaService service;
-
+	
 	@PostMapping
 	@ApiOperation(value = "Calcula o total, salva a venda e envia sms personalizada")
 	public ResponseEntity<?> salvar(@RequestBody Venda venda) {
-		try {
-			Map<String, Object> resultado = service.salvar(venda);
-			return ResponseEntity.status(HttpStatus.CREATED).body(resultado);
-		} catch (VendaException e) {
-			ApiResponse errorResponse = new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
-					"Erro ao salvar a venda.", e.getMessage());
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-		}
+	    try {
+	        Map<String, Object> resultado = service.salvar(venda);
+	        Venda vendaComTotal = (Venda) resultado.get("venda");
+	        String mensagem = (String) resultado.get("msg");
+	        
+	        RespostaSalvar resposta = new RespostaSalvar();
+	        resposta.setVendas(Collections.singletonList(vendaComTotal));
+	        resposta.setMensagem(mensagem);
+	        
+	        return ResponseEntity.status(HttpStatus.CREATED).body(resposta);
+	    } catch (VendaException e) {
+	        ApiResponse errorResponse = new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+	                "Erro ao salvar a venda.", e.getMessage());
+	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+	    }
 	}
 
 	@GetMapping
 	@ApiOperation(value = "Retorna uma lista de vendas")
-	public Page<Venda> buscarVendas(@RequestParam(value = "minDate", defaultValue = "") String minDate,
+	public List<Venda> buscarVendas(@RequestParam(value = "minDate", defaultValue = "") String minDate,
 			@RequestParam(value = "maxDate", defaultValue = "") String maxDate, Pageable pageable) {
-		return service.buscarVendas(minDate, maxDate, pageable);
+		Page<Venda> vendasPage = service.buscarVendas(minDate, maxDate, pageable);
+		List<Venda> vendasList = vendasPage.getContent();
+		return vendasList;
 	}
 
 }
