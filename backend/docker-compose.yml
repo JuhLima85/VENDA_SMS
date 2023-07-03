@@ -2,6 +2,7 @@ version: '3'
 services:
   db:
     image: mysql
+    container_name: containerMysql
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -13,14 +14,16 @@ services:
 
   app:
     image: devjuliana/apivenda
+    container_name: containerApp
     restart: always
     env_file:
-      - ./backend/docker/.env
+      - .env
     ports:
       - 9090:8080
     networks:
       - apivenda-network
-    command: sh -c './scripts/wait-for-db.sh db 3306 java -jar minha-aplicacao.jar'
+    depends_on:
+      - db
 
 networks:
   apivenda-network:
