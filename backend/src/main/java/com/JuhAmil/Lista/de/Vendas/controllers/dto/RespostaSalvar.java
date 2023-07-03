@@ -1,4 +1,4 @@
-package com.JuhAmil.Lista.de.Vendas.controllers;
+package com.JuhAmil.Lista.de.Vendas.controllers.dto;
 
 import java.util.List;
 

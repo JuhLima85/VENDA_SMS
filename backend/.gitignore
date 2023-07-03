@@ -34,3 +34,6 @@ build/
 
 # Arquivo de propriedades de teste
 test.properties
+
+# Variaveis de ambiente twilio
+.env

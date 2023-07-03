@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity
 @Table(name = "tb_vendas")
 public class Venda implements Serializable {
@@ -18,10 +20,12 @@ public class Venda implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@ApiModelProperty(hidden = true)
 	private long id;
 	private String vendedor;
 	private Integer qtdVenda;
 	private double precoUnitario;
+	@ApiModelProperty(hidden = true)
 	private double total;
 	private LocalDate data;
 

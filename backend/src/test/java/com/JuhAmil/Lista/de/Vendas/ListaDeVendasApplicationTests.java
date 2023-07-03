@@ -20,7 +20,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.TestPropertySource;
 
-import com.JuhAmil.Lista.de.Vendas.controllers.RespostaSalvar;
+import com.JuhAmil.Lista.de.Vendas.controllers.dto.RespostaSalvar;
 import com.JuhAmil.Lista.de.Vendas.entidades.Venda;
 import com.JuhAmil.Lista.de.Vendas.repositories.VendaRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -47,7 +47,7 @@ class ListaDeVendasApplicationTests {
 	void CadastrarEListarVendas() throws Exception {
 		vendaRepository.deleteAll();
 		salvarVenda(venda);
-	    consultarVenda(venda.getId());
+		consultarVenda(venda.getId());
 		vendaRepository.deleteAll();
 		var listaVendas = listarVendas();
 		assertEquals(0, listaVendas.size());
@@ -63,7 +63,7 @@ class ListaDeVendasApplicationTests {
 		var responseCode = restTemplate.postForEntity(getURLDoServico(), httpRequest, Venda.class).getStatusCode();
 		assertEquals(HttpStatus.BAD_REQUEST, responseCode);
 	}
-	
+
 	private void salvarVenda(final Venda venda) throws Exception {
 		HttpHeaders httpHeaders = new HttpHeaders();
 		httpHeaders.setContentType(MediaType.APPLICATION_JSON);
@@ -88,5 +88,4 @@ class ListaDeVendasApplicationTests {
 	private String getURLDoServico() {
 		return "http://localhost:" + port + "/vendas/";
 	}
-
 }

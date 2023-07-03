@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.JuhAmil.Lista.de.Vendas.controllers.dto.RespostaSalvar;
 import com.JuhAmil.Lista.de.Vendas.entidades.Venda;
 import com.JuhAmil.Lista.de.Vendas.exception.ApiResponse;
 import com.JuhAmil.Lista.de.Vendas.exception.VendaException;
@@ -53,7 +54,7 @@ public class VendaController {
 	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
 	    }
 	}
-
+	
 	@GetMapping
 	@ApiOperation(value = "Retorna uma lista de vendas")
 	public List<Venda> buscarVendas(@RequestParam(value = "minDate", defaultValue = "") String minDate,

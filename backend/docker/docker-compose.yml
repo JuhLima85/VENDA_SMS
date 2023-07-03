@@ -1,0 +1,27 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vendadb
+    ports:
+      - 3307:3306
+    networks:
+      - apivenda-network
+
+  app:
+    image: devjuliana/apivenda
+    restart: always
+    env_file:
+      - ./backend/docker/.env
+    ports:
+      - 9090:8080
+    networks:
+      - apivenda-network
+    command: sh -c './scripts/wait-for-db.sh db 3306 java -jar minha-aplicacao.jar'
+
+networks:
+  apivenda-network:
+    driver: bridge

@@ -29,20 +29,6 @@ public class SwaggerConfig {
 		
 	}
 	
-	/*
-	private ApiInfo metaInfo() { 
-		return new ApiInfoBuilder() 
-		.title("Teste")
-		 .description("\"Teste\"")
-		 .version("1.0.0")
-		 .license("Apache License Version 2.0") 
-		 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"") 
-		 .build(); 
-		}
-*/
-	
-	
-	
     private ApiInfo metaInfo() {
     	  ApiInfo apiInfo = new ApiInfo(    	
     			  "Vendas API REST",
@@ -56,7 +42,5 @@ public class SwaggerConfig {
     	  
     	  return apiInfo;
                   
-      }
-    	    
-		
-	}
+      }	
+	} 

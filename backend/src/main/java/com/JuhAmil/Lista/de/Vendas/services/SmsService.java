@@ -47,7 +47,7 @@ public class SmsService {
 			Twilio.init(twilioSid, twilioKey);			
 			PhoneNumber to = new PhoneNumber(twilioPhoneTo);
 			PhoneNumber from = new PhoneNumber(twilioPhoneFrom);
-			Message.creator(to, from, msg).create();
+			Message.creator(to, from, msg).create();			
 			
 			return msg;			
 		} catch (Exception e) {
