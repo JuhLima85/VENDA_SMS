@@ -44,6 +44,9 @@ para autenticação e configuração dos serviços de envio de mensagens quanto 
 
 ## Response Body:
 ![imagei](https://github.com/JuhLima85/ApiEnvioSms/assets/89745459/d10bc89c-6b92-4a55-b805-92ac0b1a1180)
+
+## Teste automatizado
+![Teste automatizado](https://github.com/JuhLima85/VENDA_SMS/assets/89745459/dad69ac3-77c5-406b-93d5-1bb29dde1156)
 <br/>
 
 #### 
